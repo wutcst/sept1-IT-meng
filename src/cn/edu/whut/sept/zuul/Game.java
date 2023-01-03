@@ -108,7 +108,7 @@ public class Game
      * @param command 待处理的游戏指令，由解析器从用户输入内容生成.
      * @return 如果执行的是游戏结束指令，则返回true，否则返回false.
      */
-    private boolean processCommand(Command command){
+    public boolean processCommand(Command command){
         boolean wantToQuit = false;
         Object o = command.processCommand(currentRoom,parser.getCommands(),stack);
         if(o instanceof Boolean){
