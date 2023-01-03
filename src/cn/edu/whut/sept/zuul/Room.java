@@ -13,6 +13,19 @@ public class Room
     private String description;//场景的描述
     private HashMap<String, Room> exits;//该房间的门(出口)
     private ArrayList<Object> goods;//该场景下的物品信息
+    private boolean isSpecial;//标识该房间是否是特殊的房间
+
+    public HashMap<String, Room> getExits() {
+        return exits;
+    }
+
+    public boolean isSpecial() {
+        return isSpecial;
+    }
+
+    public void setSpecial(boolean special) {
+        isSpecial = special;
+    }
 
     public Room(String description)
     {

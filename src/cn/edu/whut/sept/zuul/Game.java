@@ -15,6 +15,8 @@ package cn.edu.whut.sept.zuul;
 
 import cn.edu.whut.sept.zuul.command.Command;
 
+import java.util.HashMap;
+import java.util.Map;
 import java.util.Stack;
 public class Game
 {
@@ -49,6 +51,7 @@ public class Game
         lab.addGoods(new Item("backpack (can hold things)",10,1));
         office = new Room("in the computing admin office");
         office.addGoods(new Item("food",5,10));
+        theater.setSpecial(true);
 
         // initialise room exits
         outside.setExit("east", theater);
@@ -113,6 +116,22 @@ public class Game
         }else if(o instanceof Room){
             stack.add(currentRoom);
             currentRoom = (Room) o;
+            if(currentRoom.isSpecial()){
+                HashMap<String, Room> exits = currentRoom.getExits();
+                int size = exits.size();
+                int random = (int) (Math.random()*size);
+                int i=0;
+                for (Map.Entry<String,Room> en:exits.entrySet()){
+                    if(i==random){//随机传送到下一个Room
+                        currentRoom = exits.get(en.getKey());
+                        System.out.println("current room is special you are taken to another Room.");
+                        System.out.println(currentRoom.getLongDescription());
+                     break;
+                    }
+                    i++;
+                }
+
+            }
         }
         return wantToQuit;
     }
